@@ -1,0 +1,31 @@
+# Jupyter Notebook cache
+.ipynb_checkpoints/
+
+# Python Cache and Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# OS Generated Junk Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE Configurations
+.vscode/
+.idea/
+
+# --- PROJECT SPECIFIC DATA ---
+
+# Ignored Data Extraction Scripts
+Test Extractor.txt
+Extraction.py
+
+# Uncomment the lines below if you DO NOT want to upload your mock CSVs.
+# ochiai_results/
+# ochiai_ms_results/

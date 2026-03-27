@@ -1,0 +1,422 @@
+{
+    "bug_0001": [
+        [
+            "org.example.Class1",
+            14
+        ]
+    ],
+    "bug_0002": [
+        [
+            "org.example.Class2",
+            35
+        ]
+    ],
+    "bug_0003": [
+        [
+            "org.example.Class3",
+            30
+        ]
+    ],
+    "bug_0004": [
+        [
+            "org.example.Class4",
+            26
+        ]
+    ],
+    "bug_0005": [
+        [
+            "org.example.Class5",
+            14
+        ]
+    ],
+    "bug_0006": [
+        [
+            "org.example.Class6",
+            22
+        ]
+    ],
+    "bug_0007": [
+        [
+            "org.example.Class7",
+            15
+        ]
+    ],
+    "bug_0008": [
+        [
+            "org.example.Class8",
+            10
+        ]
+    ],
+    "bug_0009": [
+        [
+            "org.example.Class9",
+            24
+        ]
+    ],
+    "bug_0010": [
+        [
+            "org.example.Class10",
+            27
+        ]
+    ],
+    "bug_0011": [
+        [
+            "org.example.Class11",
+            18
+        ]
+    ],
+    "bug_0012": [
+        [
+            "org.example.Class12",
+            38
+        ]
+    ],
+    "bug_0013": [
+        [
+            "org.example.Class13",
+            21
+        ]
+    ],
+    "bug_0014": [
+        [
+            "org.example.Class14",
+            40
+        ]
+    ],
+    "bug_0015": [
+        [
+            "org.example.Class15",
+            38
+        ]
+    ],
+    "bug_0016": [
+        [
+            "org.example.Class16",
+            10
+        ]
+    ],
+    "bug_0017": [
+        [
+            "org.example.Class17",
+            33
+        ]
+    ],
+    "bug_0018": [
+        [
+            "org.example.Class18",
+            20
+        ]
+    ],
+    "bug_0019": [
+        [
+            "org.example.Class19",
+            30
+        ]
+    ],
+    "bug_0020": [
+        [
+            "org.example.Class20",
+            38
+        ]
+    ],
+    "bug_0021": [
+        [
+            "org.example.Class21",
+            36
+        ]
+    ],
+    "bug_0022": [
+        [
+            "org.example.Class22",
+            27
+        ]
+    ],
+    "bug_0023": [
+        [
+            "org.example.Class23",
+            20
+        ]
+    ],
+    "bug_0024": [
+        [
+            "org.example.Class24",
+            15
+        ]
+    ],
+    "bug_0025": [
+        [
+            "org.example.Class25",
+            33
+        ]
+    ],
+    "bug_0026": [
+        [
+            "org.example.Class26",
+            35
+        ]
+    ],
+    "bug_0027": [
+        [
+            "org.example.Class27",
+            26
+        ]
+    ],
+    "bug_0028": [
+        [
+            "org.example.Class28",
+            18
+        ]
+    ],
+    "bug_0029": [
+        [
+            "org.example.Class29",
+            28
+        ]
+    ],
+    "bug_0030": [
+        [
+            "org.example.Class30",
+            20
+        ]
+    ],
+    "bug_0031": [
+        [
+            "org.example.Class31",
+            19
+        ]
+    ],
+    "bug_0032": [
+        [
+            "org.example.Class32",
+            26
+        ]
+    ],
+    "bug_0033": [
+        [
+            "org.example.Class33",
+            15
+        ]
+    ],
+    "bug_0034": [
+        [
+            "org.example.Class34",
+            40
+        ]
+    ],
+    "bug_0035": [
+        [
+            "org.example.Class35",
+            35
+        ]
+    ],
+    "bug_0036": [
+        [
+            "org.example.Class36",
+            23
+        ]
+    ],
+    "bug_0037": [
+        [
+            "org.example.Class37",
+            31
+        ]
+    ],
+    "bug_0038": [
+        [
+            "org.example.Class38",
+            24
+        ]
+    ],
+    "bug_0039": [
+        [
+            "org.example.Class39",
+            32
+        ]
+    ],
+    "bug_0040": [
+        [
+            "org.example.Class40",
+            38
+        ]
+    ],
+    "bug_0041": [
+        [
+            "org.example.Class41",
+            10
+        ]
+    ],
+    "bug_0042": [
+        [
+            "org.example.Class42",
+            27
+        ]
+    ],
+    "bug_0043": [
+        [
+            "org.example.Class43",
+            18
+        ]
+    ],
+    "bug_0044": [
+        [
+            "org.example.Class44",
+            39
+        ]
+    ],
+    "bug_0045": [
+        [
+            "org.example.Class45",
+            39
+        ]
+    ],
+    "bug_0046": [
+        [
+            "org.example.Class46",
+            24
+        ]
+    ],
+    "bug_0047": [
+        [
+            "org.example.Class47",
+            38
+        ]
+    ],
+    "bug_0048": [
+        [
+            "org.example.Class48",
+            40
+        ]
+    ],
+    "bug_0049": [
+        [
+            "org.example.Class49",
+            24
+        ]
+    ],
+    "bug_0050": [
+        [
+            "org.example.Class50",
+            22
+        ]
+    ],
+    "bug_0051": [
+        [
+            "org.example.Class51",
+            28
+        ]
+    ],
+    "bug_0052": [
+        [
+            "org.example.Class52",
+            34
+        ]
+    ],
+    "bug_0053": [
+        [
+            "org.example.Class53",
+            17
+        ]
+    ],
+    "bug_0054": [
+        [
+            "org.example.Class54",
+            13
+        ]
+    ],
+    "bug_0055": [
+        [
+            "org.example.Class55",
+            33
+        ]
+    ],
+    "bug_0056": [
+        [
+            "org.example.Class56",
+            14
+        ]
+    ],
+    "bug_0057": [
+        [
+            "org.example.Class57",
+            32
+        ]
+    ],
+    "bug_0058": [
+        [
+            "org.example.Class58",
+            21
+        ]
+    ],
+    "bug_0059": [
+        [
+            "org.example.Class59",
+            38
+        ]
+    ],
+    "bug_0060": [
+        [
+            "org.example.Class60",
+            16
+        ]
+    ],
+    "bug_0061": [
+        [
+            "org.example.Class61",
+            35
+        ]
+    ],
+    "bug_0062": [
+        [
+            "org.example.Class62",
+            21
+        ]
+    ],
+    "bug_0063": [
+        [
+            "org.example.Class63",
+            15
+        ]
+    ],
+    "bug_0064": [
+        [
+            "org.example.Class64",
+            33
+        ]
+    ],
+    "bug_0065": [
+        [
+            "org.example.Class65",
+            25
+        ]
+    ],
+    "bug_0066": [
+        [
+            "org.example.Class66",
+            35
+        ]
+    ],
+    "bug_0067": [
+        [
+            "org.example.Class67",
+            14
+        ]
+    ],
+    "bug_0068": [
+        [
+            "org.example.Class68",
+            28
+        ]
+    ],
+    "bug_0069": [
+        [
+            "org.example.Class69",
+            20
+        ]
+    ],
+    "bug_0070": [
+        [
+            "org.example.Class70",
+            37
+        ]
+    ]
+}
