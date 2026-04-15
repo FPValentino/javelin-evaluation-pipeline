@@ -33,6 +33,11 @@ python generate_patches.py
 
 ### 2. Build the Ground Truth (The Answer Key)
 Run the extractor to find the exact faulty line numbers from the patches. This will automatically generate your `ground_truth.json` file:
+
+**Install unidiff first**
+```bash
+pip install unidiff
+```
 ```bash
 python build_ground_truth.py
 ```
