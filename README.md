@@ -38,7 +38,7 @@ Run the extractor to find the exact faulty line numbers from the patches. This w
 ```bash
 pip install unidiff
 ```
-***Replace [your-profile] with your directory FIRST in this part of the code: patch_dir = r"\\wsl.localhost\Ubuntu\home\paul\javelin-workspaces\gitbug_patches"!***
+***Replace [your-profile] with your directory FIRST in this part of the code: patch_dir = r"\\wsl.localhost\Ubuntu\home\[your-profile]\javelin-workspaces\gitbug_patches"!***
 ```bash
 python build_ground_truth.py
 ```
