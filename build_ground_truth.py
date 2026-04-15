@@ -22,19 +22,16 @@ def extract_faulty_lines(patch_folder):
             faults_for_this_bug = []
             
             for patched_file in patch:
-                # Skip test files, we only want source code faults
-                if "src/test" in patched_file.path or not patched_file.path.endswith(".java"):
+                # Strip quotes and normalize slashes
+                clean_path = patched_file.path.replace('"', '').replace("'", "").replace('\\', '/')
+                
+                # Skip test files
+                if "src/test" in clean_path or not clean_path.endswith(".java"):
                     continue
                 
-                # ---------------------------------------------------------
-                # BULLETPROOF FQCN EXTRACTION (For diverse project layouts)
-                # ---------------------------------------------------------
-                # Git diffs often start with 'a/' or 'b/', strip that first
-                clean_path = patched_file.path
                 if clean_path.startswith("a/") or clean_path.startswith("b/"):
                     clean_path = clean_path[2:]
                 
-                # List of common Java root directories we want to strip away
                 source_roots = [
                     "src/main/java/", "src/test/java/", "src/java/", 
                     "source/main/java/", "src/", "source/"
@@ -43,29 +40,31 @@ def extract_faulty_lines(patch_folder):
                 class_name = clean_path
                 for root in source_roots:
                     if root in clean_path:
-                        # Split by the root and keep everything after it
                         class_name = clean_path.split(root)[-1]
-                        break # Stop at the first match
+                        break 
                 
-                # Convert the remaining path (e.g., org/jsoup/TextNode.java) into FQCN
-                class_name = class_name.replace('/', '.').replace('\\', '.').replace('.java', '')
-                # ---------------------------------------------------------
+                class_name = class_name.replace('/', '.').replace('.java', '')
                 
                 for hunk in patched_file:
                     hunk_has_removals = any(line.is_removed for line in hunk)
                     
+                    # THE FIX: Keep a running tracker of the last valid original line number
+                    last_source_line = max(1, hunk.source_start)
+                    
                     for line in hunk:
+                        # Update our tracker if this line actually existed in the original file
+                        if line.source_line_no is not None:
+                            last_source_line = line.source_line_no
+                            
                         if line.is_removed:
                             # Standard bug: a line was changed or deleted
                             faults_for_this_bug.append([class_name, line.source_line_no])
                         elif not hunk_has_removals and line.is_added:
-                            # Omission bug: code was only added. Grab the source line right above it.
-                            fault_line = max(1, line.source_line_no - 1)
-                            faults_for_this_bug.append([class_name, fault_line])
+                            # Omission bug: code was only added. Use the tracker!
+                            faults_for_this_bug.append([class_name, last_source_line])
             
             # Remove duplicates and add to dictionary
             if faults_for_this_bug:
-                # Convert to tuple for unique set, then back to list
                 unique_faults = [list(x) for x in set(tuple(x) for x in faults_for_this_bug)]
                 ground_truth[bug_id] = unique_faults
                 
@@ -81,7 +80,10 @@ def extract_faulty_lines(patch_folder):
     print(f"✅ Ground truth saved securely to '{output_file}'.")
     print("You may now run the Evaluation Script!")
 
-# --- Run the extractor ---
-# Note: You will need to extract the .patch files from GitBug-Java first.
-# Uncomment the line below and point it to your patches folder when ready to run.
-# extract_faulty_lines('./gitbug_patches')
+if __name__ == "__main__":
+    patch_dir = r"\\wsl.localhost\Ubuntu\home\[your-profile]\javelin-workspaces\gitbug_patches"
+    
+    if not os.path.exists(patch_dir):
+        print(f"Error: Could not find patches folder at {patch_dir}")
+    else:
+        extract_faulty_lines(patch_dir)
