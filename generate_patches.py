@@ -4,14 +4,15 @@ import subprocess
 def generate_all_patches():
     print("🛠️  Javelin Patch Generator")
     
-    workspace_dir = os.path.expanduser("~/javelin-workspaces")
+    # Give Windows Python the exact network address to the WSL drive
+    workspace_dir = r"\\wsl.localhost\Ubuntu\home\[your-profile]\javelin-workspaces"
     patch_dir = os.path.join(workspace_dir, "gitbug_patches")
     
     # Create the patches folder if it doesn't exist
     os.makedirs(patch_dir, exist_ok=True)
     
     if not os.path.exists(workspace_dir):
-        print(f"Error: Could not find {workspace_dir}. Have you extracted bugs yet?")
+        print(f"Error: Could not find {workspace_dir}. Check your WSL connection.")
         return
 
     # Find all folders that end with "-buggy"
@@ -34,25 +35,21 @@ def generate_all_patches():
         if os.path.exists(fixed_path):
             print(f" -> Creating patch for {bug_id}...")
             
-            # We use git diff --no-index to compare two standard folders perfectly
-            # We specifically target the /src folder to ignore build files or pom.xml changes
             buggy_src = os.path.join(buggy_path, "src")
             fixed_src = os.path.join(fixed_path, "src")
             
-            # If the project has a src folder, diff that to keep the patch clean
+            # Use quotes around paths to protect them during the Windows shell command
             if os.path.exists(buggy_src) and os.path.exists(fixed_src):
-                cmd = f"git diff --no-index {buggy_src} {fixed_src} > {patch_file_path}"
+                cmd = f'git diff --no-index "{buggy_src}" "{fixed_src}" > "{patch_file_path}"'
             else:
-                # Fallback to diffing the whole folder if no src folder exists
-                cmd = f"git diff --no-index {buggy_path} {fixed_path} > {patch_file_path}"
+                cmd = f'git diff --no-index "{buggy_path}" "{fixed_path}" > "{patch_file_path}"'
 
-            # Run the command (git diff returns an exit code of 1 when differences are found, which is expected)
-            subprocess.run(cmd, shell=True, capture_output=True)
+            subprocess.run(cmd, shell=True)
         else:
             print(f" ⚠️ Skipping {bug_id}: Could not find matching '-fixed' folder.")
 
     print(f"\n✅ All patches successfully saved to: {patch_dir}")
-    print("You can now point your 'Extraction.py' script to this folder!")
+    print("You can now run your 'build_ground_truth.py' script!")
 
 if __name__ == "__main__":
-    generate_patches()
+    generate_all_patches()
