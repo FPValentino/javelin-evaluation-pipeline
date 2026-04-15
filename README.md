@@ -25,6 +25,8 @@ pip install pandas scipy tqdm unidiff
 
 ### 1. Generate Patches (The Diff)
 Ensure you have extracted the `-buggy` and `-fixed` workspaces using the tools from the `javelin-env-setup` repository. Run the patch generator to compare them and create the diffs:
+* **LOOK INSIDE THE CODE! Change [your-profile] to your javelin-workspace directory in Linux IN: workspace_dir = r"\\wsl.localhost\Ubuntu\home\paul\javelin-workspaces"**
+
 ```bash
 python generate_patches.py
 ```
