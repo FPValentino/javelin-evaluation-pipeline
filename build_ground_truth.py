@@ -25,8 +25,9 @@ def extract_faulty_lines(patch_folder):
                 # Strip quotes and normalize slashes
                 clean_path = patched_file.path.replace('"', '').replace("'", "").replace('\\', '/')
                 
-                # Skip test files
-                if "src/test" in clean_path or not clean_path.endswith(".java"):
+                # Skip test files (Expanded for older Defects4J folder structures)
+                lower_path = clean_path.lower()
+                if "src/test" in lower_path or "/test/" in lower_path or "/tests/" in lower_path or not clean_path.endswith(".java"):
                     continue
                 
                 if clean_path.startswith("a/") or clean_path.startswith("b/"):
@@ -81,7 +82,7 @@ def extract_faulty_lines(patch_folder):
     print("You may now run the Evaluation Script!")
 
 if __name__ == "__main__":
-    patch_dir = r"\\wsl.localhost\Ubuntu\home\[your-profile]\javelin-workspaces\gitbug_patches"
+    patch_dir = r"\\wsl.localhost\Ubuntu\home\paul\javelin-workspaces\gitbug_patches"
     
     if not os.path.exists(patch_dir):
         print(f"Error: Could not find patches folder at {patch_dir}")
