@@ -82,9 +82,10 @@ def extract_faulty_lines(patch_folder):
     print("You may now run the Evaluation Script!")
 
 if __name__ == "__main__":
-    patch_dir = r"\\wsl.localhost\Ubuntu\home\paul\javelin-workspaces\gitbug_patches"
+    wsl_user = input("Enter your WSL Ubuntu username (e.g., ferdinand): ").strip()
+    patch_dir = fr"\\wsl.localhost\Ubuntu\home\{wsl_user}\javelin-workspaces\gitbug_patches"
     
     if not os.path.exists(patch_dir):
-        print(f"Error: Could not find patches folder at {patch_dir}")
+        print(f"❌ Error: Could not find patches folder at {patch_dir}")
     else:
         extract_faulty_lines(patch_dir)
