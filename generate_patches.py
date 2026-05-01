@@ -4,22 +4,23 @@ import subprocess
 def generate_all_patches():
     print("🛠️  Javelin Patch Generator")
     
-    # Give Windows Python the exact network address to the WSL drive
-    workspace_dir = r"\\wsl.localhost\Ubuntu\home\[your-profile]\javelin-workspaces"
+    # Dynamically ask for the WSL username to build the path
+    wsl_user = input("Enter your WSL Ubuntu username (e.g., ferdinand): ").strip()
+    workspace_dir = fr"\\wsl.localhost\Ubuntu\home\{wsl_user}\javelin-workspaces"
     patch_dir = os.path.join(workspace_dir, "gitbug_patches")
     
     # Create the patches folder if it doesn't exist
     os.makedirs(patch_dir, exist_ok=True)
     
     if not os.path.exists(workspace_dir):
-        print(f"Error: Could not find {workspace_dir}. Check your WSL connection.")
+        print(f"❌ Error: Could not find {workspace_dir}. Check your WSL connection and username.")
         return
 
     # Find all folders that end with "-buggy"
     buggy_folders = [f for f in os.listdir(workspace_dir) if f.endswith("-buggy")]
     
     if not buggy_folders:
-        print("No buggy folders found to compare.")
+        print("⚠️ No buggy folders found to compare.")
         return
 
     print(f"Found {len(buggy_folders)} bugs. Generating patches...\n")
