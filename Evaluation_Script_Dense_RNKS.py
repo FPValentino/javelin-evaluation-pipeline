@@ -18,24 +18,6 @@ SENSITIVITY_EXCLUDE_SETS = {
 }
 # ─────────────────────────────────────────────────────────────────────────────
 
-def recompute_average_ranks(df):
-    """Recompute ranks using average (midpoint) ranking for tied scores.
-    Sorts by Score descending; tied lines get the midpoint of their ordinal positions."""
-    df = df.sort_values('Score', ascending=False).reset_index(drop=True)
-    avg_ranks = {}
-    i = 0
-    while i < len(df):
-        score = df.loc[i, 'Score']
-        j = i
-        while j < len(df) and df.loc[j, 'Score'] == score:
-            j += 1
-        midpoint = (i + 1 + j) / 2.0  # e.g. positions 5..14 → 9.5
-        for k in range(i, j):
-            avg_ranks[k] = midpoint
-        i = j
-    df['AvgRank'] = df.index.map(avg_ranks)
-    return df
-
 def evaluate_algorithm(algorithm_name, folder_path, bug_records):
     exam_scores_dict = {}
     best_ranks_dict = {}
@@ -70,7 +52,6 @@ def evaluate_algorithm(algorithm_name, folder_path, bug_records):
 
         try:
             data_frame = pd.read_csv(filepath)
-            data_frame = recompute_average_ranks(data_frame)
             total_elements = len(data_frame)
 
             found_ranks = []
@@ -82,7 +63,7 @@ def evaluate_algorithm(algorithm_name, folder_path, bug_records):
                     (data_frame['Line'] == faulty_line)
                 ]
                 if not fault_row.empty:
-                    found_ranks.append(fault_row['AvgRank'].iloc[0])
+                    found_ranks.append(fault_row['Rank'].iloc[0])
 
             found_gt_lines = len(found_ranks)
             gt_coverage_dict[bug_id] = f"{found_gt_lines}/{total_gt_lines}"
@@ -102,8 +83,8 @@ def evaluate_algorithm(algorithm_name, folder_path, bug_records):
             if found_gt_lines < total_gt_lines:
                 tqdm.write(f"  ⚠ {bug_id}: Only {found_gt_lines}/{total_gt_lines} ground truth lines found in SBFL output (omission/interface bug?)")
 
-            # Average rank is directly the expected lines inspected (float)
-            lines_inspected = best_fault_rank
+            # Fix 1: count actual lines inspected under dense ranking
+            lines_inspected = len(data_frame[data_frame['Rank'] <= best_fault_rank])
             exam_score = lines_inspected / total_elements
 
             exam_scores_dict[bug_id] = exam_score
@@ -504,20 +485,20 @@ def export_results(ochiai_data, ms_data, wilcox_data):
 
     # --- Explanatory sheet data ---
     explanatory_rows = [
-        {"Topic": "REPORT OVERVIEW", "Description": "Compares Standard Ochiai vs Ochiai-MS spectrum-based fault localization (SBFL). This report uses average (midpoint) ranking to resolve tied suspiciousness scores."},
+        {"Topic": "REPORT OVERVIEW", "Description": "Compares Standard Ochiai vs Ochiai-MS spectrum-based fault localization (SBFL). This report uses dense ranking to resolve tied suspiciousness scores."},
         {"Topic": "", "Description": ""},
         {"Topic": "--- KEY METRICS ---", "Description": ""},
         {"Topic": "", "Description": ""},
-        {"Topic": "EXAM Score", "Description": "EXAM = (rank of first faulty line) / (total executable statements). Fraction of code a developer must inspect before encountering the first faulty line."},
+        {"Topic": "EXAM Score", "Description": "EXAM = (lines inspected up to and including rank of first faulty line) / (total executable statements). Fraction of code inspected before reaching the first fault."},
         {"Topic": "  Range", "Description": "0.0 to 1.0. LOWER is better. EXAM = 0.05 means only 5% of code needs to be inspected to find the fault."},
-        {"Topic": "  Calculation", "Description": "1) Rank all statements by suspiciousness descending. 2) Find average rank of highest-ranked ground truth line. 3) Divide by total statements."},
+        {"Topic": "  Calculation", "Description": "1) Rank all statements by suspiciousness descending (dense). 2) Find dense rank of highest-ranked GT line. 3) Count all lines at or above that rank. 4) Divide by total statements."},
         {"Topic": "  Worst Case", "Description": "EXAM = 1.0 is assigned when: result CSV is missing, no GT lines found in SBFL output, or an error occurs during processing."},
         {"Topic": "", "Description": ""},
-        {"Topic": "Best Rank", "Description": "Rank position of the highest-ranked (most suspicious) ground truth faulty line. LOWER is better. Rank 1 = most suspicious line in the whole program."},
-        {"Topic": "  Ranking Method (Avg)", "Description": "Tied suspiciousness scores receive the midpoint of their ordinal positions. E.g., 3 lines tied at positions 5-7 all receive rank 6.0. The average rank equals the expected number of lines inspected."},
+        {"Topic": "Best Rank", "Description": "Dense rank position of the highest-ranked (most suspicious) ground truth faulty line. LOWER is better. Rank 1 = most suspicious line."},
+        {"Topic": "  Ranking Method (Dense)", "Description": "Tied suspiciousness scores all receive the same rank, and the next distinct score gets the next integer rank (no gaps). Lines inspected = count of all lines at or above that dense rank."},
         {"Topic": "", "Description": ""},
         {"Topic": "Top-N Accuracy", "Description": "Count of bugs where the first faulty line was found within the first N lines inspected (N = 1, 3, 5, 10). HIGHER is better."},
-        {"Topic": "  Calculation", "Description": "A bug is a Top-N hit if its average rank (= expected lines inspected) is <= N. Ties are handled fairly via midpoint ranking."},
+        {"Topic": "  Calculation", "Description": "A bug is a Top-N hit if lines_inspected (count of lines at or above the best fault dense rank) is <= N."},
         {"Topic": "", "Description": ""},
         {"Topic": "GT Coverage", "Description": "Format: found/total. Number of known faulty ground truth lines that appear in the SBFL ranking output."},
         {"Topic": "  Interpretation", "Description": "found < total = omission or interface bugs: some faulty lines are not in the executed/instrumented code and cannot be ranked by SBFL."},
@@ -549,7 +530,7 @@ def export_results(ochiai_data, ms_data, wilcox_data):
     ]
 
     try:
-        with pd.ExcelWriter('Javelin_Evaluation_Report_avg.xlsx', engine='openpyxl') as writer:
+        with pd.ExcelWriter('Javelin_Evaluation_Report_dense.xlsx', engine='openpyxl') as writer:
             # Sheet 1: Guide (explanatory — always first)
             pd.DataFrame(explanatory_rows).to_excel(writer, sheet_name="Guide", index=False)
 
@@ -572,8 +553,8 @@ def export_results(ochiai_data, ms_data, wilcox_data):
             ws1.cell(row=3, column=1, value="EXAM = 1.0 with blank Best Rank means: CSV file was missing (check GT Found = N/A) OR no ground truth lines were found in the SBFL output (check GT Found = 0/N). Both are worst-case penalties.")
 
             ws2 = writer.sheets["Project Summaries"]
-            ws2.cell(row=1, column=1, value="METRIC EXPLANATION: Top-N = bugs where fault was within the first N statements inspected (ties handled via average/midpoint ranking).")
-            ws2.cell(row=2, column=1, value="Avg Best Rank = mean average (midpoint) rank of first faulty line across all bugs. LOWER is better for both EXAM and Avg Rank.")
+            ws2.cell(row=1, column=1, value="METRIC EXPLANATION: Top-N = bugs where fault was within the first N statements inspected (ties handled via dense ranking).")
+            ws2.cell(row=2, column=1, value="Avg Best Rank = mean dense rank of first faulty line across all bugs. LOWER is better for both EXAM and Avg Rank.")
 
             ws3 = writer.sheets["Global & Statistics"]
             ws3.cell(row=1, column=1, value="METRIC EXPLANATION: Overall aggregated performance and non-parametric statistical testing.")
@@ -591,7 +572,7 @@ def export_results(ochiai_data, ms_data, wilcox_data):
             ws6.cell(row=1, column=1, value="SENSITIVITY ANALYSIS: Global Wilcoxon and summary metrics recomputed after excluding specific projects from the dataset.")
             ws6.cell(row=2, column=1, value="Edit SENSITIVITY_EXCLUDE_SETS at the top of this script to add or modify exclusion scenarios. All other sheets always use the full dataset.")
 
-        print(" Success: Generated 'Javelin_Evaluation_Report_avg.xlsx'.")
+        print(" Success: Generated 'Javelin_Evaluation_Report_dense.xlsx'.")
     except ImportError:
         print(" Note: 'openpyxl' not found. Falling back to CSV...")
         pd.DataFrame(bug_rows).to_csv('Javelin_Report_1_BugScores.csv', index=False)

@@ -2,7 +2,7 @@ import os
 import subprocess
 
 def generate_all_patches():
-    print("🛠️  Javelin Patch Generator")
+    print("🛠️  Javelin Patch Generator (Defects4J Only)")
     
     # Dynamically ask for the WSL username to build the path
     wsl_user = input("Enter your WSL Ubuntu username (e.g., ferdinand): ").strip()
@@ -16,14 +16,14 @@ def generate_all_patches():
         print(f"❌ Error: Could not find {workspace_dir}. Check your WSL connection and username.")
         return
 
-    # Find all folders that end with "-buggy"
-    buggy_folders = [f for f in os.listdir(workspace_dir) if f.endswith("-buggy")]
+    # Find all folders that end with "-buggy" AND start with "Defects4J"
+    buggy_folders = [f for f in os.listdir(workspace_dir) if f.endswith("-buggy") and f.startswith("Defects4J")]
     
     if not buggy_folders:
-        print("⚠️ No buggy folders found to compare.")
+        print("⚠️ No Defects4J buggy folders found to compare.")
         return
 
-    print(f"Found {len(buggy_folders)} bugs. Generating patches...\n")
+    print(f"Found {len(buggy_folders)} Defects4J bugs. Generating patches...\n")
 
     for buggy_folder in buggy_folders:
         bug_id = buggy_folder.replace("-buggy", "")
@@ -34,6 +34,10 @@ def generate_all_patches():
 
         # Check if the matching fixed folder actually exists
         if os.path.exists(fixed_path):
+            if os.path.exists(patch_file_path):
+                print(f" -> Skipping {bug_id}: patch already exists.")
+                continue
+
             print(f" -> Creating patch for {bug_id}...")
             
             buggy_src = os.path.join(buggy_path, "src")
