@@ -1,0 +1,20 @@
+diff --git a/home/paul/javelin-workspaces/Defects4J-Cli-19-buggy/src/java/org/apache/commons/cli/PosixParser.java b/home/paul/javelin-workspaces/Defects4J-Cli-19-fixed/src/java/org/apache/commons/cli/PosixParser.java
+index 08a9280..fe01ceb 100644
+--- a/home/paul/javelin-workspaces/Defects4J-Cli-19-buggy/src/java/org/apache/commons/cli/PosixParser.java
++++ b/home/paul/javelin-workspaces/Defects4J-Cli-19-fixed/src/java/org/apache/commons/cli/PosixParser.java
+@@ -229,13 +229,13 @@ public class PosixParser extends Parser {
+         if (options.hasOption(token))
+         {
+             currentOption = options.getOption(token);
+-            tokens.add(token);
+         }
+         else if (stopAtNonOption)
+         {
+             eatTheRest = true;
+-            tokens.add(token);
+         }
++
++        tokens.add(token);
+     }
+ 
+     /**

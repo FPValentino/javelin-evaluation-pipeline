@@ -1,0 +1,12 @@
+diff --git a/home/paul/javelin-workspaces/Defects4J-Cli-17-buggy/src/java/org/apache/commons/cli/PosixParser.java b/home/paul/javelin-workspaces/Defects4J-Cli-17-fixed/src/java/org/apache/commons/cli/PosixParser.java
+index cafcede..1792c99 100644
+--- a/home/paul/javelin-workspaces/Defects4J-Cli-17-buggy/src/java/org/apache/commons/cli/PosixParser.java
++++ b/home/paul/javelin-workspaces/Defects4J-Cli-17-fixed/src/java/org/apache/commons/cli/PosixParser.java
+@@ -300,6 +300,7 @@ public class PosixParser extends Parser {
+             else if (stopAtNonOption)
+             {
+                 process(token.substring(i));
++                break;
+             }
+             else
+             {

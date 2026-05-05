@@ -1,0 +1,17 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-Gson-16-buggy/gson/src/main/java/com/google/gson/internal/$Gson$Types.java b/home/paul/defects4j/staging/Defects4J-Gson-16-fixed/gson/src/main/java/com/google/gson/internal/$Gson$Types.java
+index 17ed0ff2..f66ac157 100644
+--- a/home/paul/defects4j/staging/Defects4J-Gson-16-buggy/gson/src/main/java/com/google/gson/internal/$Gson$Types.java
++++ b/home/paul/defects4j/staging/Defects4J-Gson-16-fixed/gson/src/main/java/com/google/gson/internal/$Gson$Types.java
+@@ -339,7 +339,12 @@ public final class $Gson$Types {
+     while (true) {
+       if (toResolve instanceof TypeVariable) {
+         TypeVariable<?> typeVariable = (TypeVariable<?>) toResolve;
++        if (visitedTypeVariables.contains(typeVariable)) {
+           // cannot reduce due to infinite recursion
++          return toResolve;
++        } else {
++          visitedTypeVariables.add(typeVariable);
++        }
+         toResolve = resolveTypeVariable(context, contextRawType, typeVariable);
+         if (toResolve == typeVariable) {
+           return toResolve;

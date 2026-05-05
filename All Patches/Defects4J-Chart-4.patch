@@ -1,0 +1,20 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-Chart-4-buggy/source/org/jfree/chart/plot/XYPlot.java b/home/paul/defects4j/staging/Defects4J-Chart-4-fixed/source/org/jfree/chart/plot/XYPlot.java
+index ec261622..6536d1dd 100644
+--- a/home/paul/defects4j/staging/Defects4J-Chart-4-buggy/source/org/jfree/chart/plot/XYPlot.java
++++ b/home/paul/defects4j/staging/Defects4J-Chart-4-fixed/source/org/jfree/chart/plot/XYPlot.java
+@@ -4490,6 +4490,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable,
+                     }
+                 }
+                 
++                if (r != null) {
+                     Collection c = r.getAnnotations();
+                     Iterator i = c.iterator();
+                     while (i.hasNext()) {
+@@ -4498,6 +4499,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable,
+                             includedAnnotations.add(a);
+                         }
+                     }
++                }
+             }
+         }
+ 

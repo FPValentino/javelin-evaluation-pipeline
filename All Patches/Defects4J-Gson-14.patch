@@ -1,0 +1,28 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-Gson-14-buggy/gson/src/main/java/com/google/gson/internal/$Gson$Types.java b/home/paul/defects4j/staging/Defects4J-Gson-14-fixed/gson/src/main/java/com/google/gson/internal/$Gson$Types.java
+index c2372c79..67394531 100644
+--- a/home/paul/defects4j/staging/Defects4J-Gson-14-buggy/gson/src/main/java/com/google/gson/internal/$Gson$Types.java
++++ b/home/paul/defects4j/staging/Defects4J-Gson-14-fixed/gson/src/main/java/com/google/gson/internal/$Gson$Types.java
+@@ -76,7 +76,11 @@ public final class $Gson$Types {
+    */
+   public static WildcardType subtypeOf(Type bound) {
+     Type[] upperBounds;
++    if (bound instanceof WildcardType) {
++      upperBounds = ((WildcardType) bound).getUpperBounds();
++    } else {
+       upperBounds = new Type[] { bound };
++    }
+     return new WildcardTypeImpl(upperBounds, EMPTY_TYPE_ARRAY);
+   }
+ 
+@@ -87,7 +91,11 @@ public final class $Gson$Types {
+    */
+   public static WildcardType supertypeOf(Type bound) {
+     Type[] lowerBounds;
++    if (bound instanceof WildcardType) {
++      lowerBounds = ((WildcardType) bound).getLowerBounds();
++    } else {
+       lowerBounds = new Type[] { bound };
++    }
+     return new WildcardTypeImpl(new Type[] { Object.class }, lowerBounds);
+   }
+ 

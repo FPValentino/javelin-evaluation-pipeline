@@ -1,0 +1,14 @@
+diff --git a/home/paul/javelin-workspaces/Defects4J-Cli-5-buggy/src/java/org/apache/commons/cli/Util.java b/home/paul/javelin-workspaces/Defects4J-Cli-5-fixed/src/java/org/apache/commons/cli/Util.java
+index 2d88c30..94e97e3 100644
+--- a/home/paul/javelin-workspaces/Defects4J-Cli-5-buggy/src/java/org/apache/commons/cli/Util.java
++++ b/home/paul/javelin-workspaces/Defects4J-Cli-5-fixed/src/java/org/apache/commons/cli/Util.java
+@@ -33,6 +33,9 @@ class Util {
+      */
+     static String stripLeadingHyphens(String str)
+     {
++        if (str == null) {
++            return null;
++        }
+         if (str.startsWith("--"))
+         {
+             return str.substring(2, str.length());

@@ -41,6 +41,7 @@ def evaluate_algorithm(algorithm_name, folder_path, bug_records):
     best_ranks_dict = {}
     lines_inspected_dict = {}
     gt_coverage_dict = {}
+    zero_score_bugs = {}
     project_scores = defaultdict(list)
     project_ranks = defaultdict(list)
     project_hits = defaultdict(lambda: {"Top-1": 0, "Top-3": 0, "Top-5": 0, "Top-10": 0})
@@ -74,6 +75,7 @@ def evaluate_algorithm(algorithm_name, folder_path, bug_records):
             total_elements = len(data_frame)
 
             found_ranks = []
+            found_scores = []
             total_gt_lines = len(fault_list)
             for fault in fault_list:
                 faulty_class, faulty_line = fault[0], fault[1]
@@ -83,6 +85,7 @@ def evaluate_algorithm(algorithm_name, folder_path, bug_records):
                 ]
                 if not fault_row.empty:
                     found_ranks.append(fault_row['AvgRank'].iloc[0])
+                    found_scores.append(fault_row['Score'].iloc[0])
 
             found_gt_lines = len(found_ranks)
             gt_coverage_dict[bug_id] = f"{found_gt_lines}/{total_gt_lines}"
@@ -98,6 +101,17 @@ def evaluate_algorithm(algorithm_name, folder_path, bug_records):
                 continue
 
             best_fault_rank = min(found_ranks)
+            best_fault_score = found_scores[found_ranks.index(best_fault_rank)]
+
+            # Track zero-score faults
+            if best_fault_score == 0.0:
+                lines_with_zero = len(data_frame[data_frame['Score'] == 0])
+                zero_score_bugs[bug_id] = {
+                    "total_statements": total_elements,
+                    "lines_with_zero_score": lines_with_zero,
+                    "midpoint_rank": best_fault_rank,
+                    "note": f"Fault has score 0, tied with {lines_with_zero} other lines. Midpoint rank = {best_fault_rank:.1f}"
+                }
 
             if found_gt_lines < total_gt_lines:
                 tqdm.write(f"  ⚠ {bug_id}: Only {found_gt_lines}/{total_gt_lines} ground truth lines found in SBFL output (omission/interface bug?)")
@@ -165,6 +179,7 @@ def evaluate_algorithm(algorithm_name, folder_path, bug_records):
         "bug_ranks": best_ranks_dict,
         "lines_inspected": lines_inspected_dict,
         "gt_coverage": gt_coverage_dict,
+        "zero_score_bugs": zero_score_bugs,
         "project_scores": project_scores,
         "project_ranks": project_ranks,
         "project_hits": project_hits,
@@ -502,6 +517,26 @@ def export_results(ochiai_data, ms_data, wilcox_data):
     # --- Sensitivity Analysis ---
     sensitivity_rows = compute_sensitivity_analysis(ochiai_data, ms_data)
 
+    # --- Zero-Score Faults sheet ---
+    zero_score_rows = []
+    ochiai_zeros = ochiai_data.get('zero_score_bugs', {})
+    ms_zeros = ms_data.get('zero_score_bugs', {})
+    all_zero_bugs = sorted(set(list(ochiai_zeros.keys()) + list(ms_zeros.keys())))
+    for bug_id in all_zero_bugs:
+        o_info = ochiai_zeros.get(bug_id)
+        ms_info = ms_zeros.get(bug_id)
+        zero_score_rows.append({
+            "Bug ID": bug_id,
+            "Ochiai Score=0?": "Yes" if o_info else "No",
+            "Ochiai Midpoint Rank": o_info["midpoint_rank"] if o_info else "",
+            "Ochiai Lines at Zero": o_info["lines_with_zero_score"] if o_info else "",
+            "Ochiai-MS Score=0?": "Yes" if ms_info else "No",
+            "Ochiai-MS Midpoint Rank": ms_info["midpoint_rank"] if ms_info else "",
+            "Ochiai-MS Lines at Zero": ms_info["lines_with_zero_score"] if ms_info else "",
+            "Total Statements": (o_info or ms_info)["total_statements"],
+            "Note": "Fault line has suspiciousness score of 0. Rank is midpoint among all zero-scored lines. SBFL cannot distinguish this fault from background.",
+        })
+
     # --- Explanatory sheet data ---
     explanatory_rows = [
         {"Topic": "REPORT OVERVIEW", "Description": "Compares Standard Ochiai vs Ochiai-MS spectrum-based fault localization (SBFL). This report uses average (midpoint) ranking to resolve tied suspiciousness scores."},
@@ -565,6 +600,12 @@ def export_results(ochiai_data, ms_data, wilcox_data):
             df_filtered.to_excel(writer, sheet_name="Filtered Analysis",    index=False, startrow=3)
             df_pw.to_excel(writer,       sheet_name="Per-Project Wilcoxon", index=False, startrow=3)
             pd.DataFrame(sensitivity_rows).to_excel(writer, sheet_name="Sensitivity Analysis", index=False, startrow=3)
+
+            if zero_score_rows:
+                pd.DataFrame(zero_score_rows).to_excel(writer, sheet_name="Zero-Score Faults", index=False, startrow=3)
+                ws_zs = writer.sheets["Zero-Score Faults"]
+                ws_zs.cell(row=1, column=1, value="ZERO-SCORE FAULTS: Bugs where the fault line received a suspiciousness score of 0 (tied with thousands of other uninformative lines).")
+                ws_zs.cell(row=2, column=1, value="These faults cannot be effectively localized by SBFL. The midpoint rank reflects the expected lines inspected when randomly sampling among all zero-scored lines.")
 
             ws1 = writer.sheets["Bug-Level Scores"]
             ws1.cell(row=1, column=1, value="METRIC EXPLANATION: EXAM = (lines inspected before first fault found) / (total statements). LOWER is better.")

@@ -1,0 +1,14 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-Lang-9-buggy/src/main/java/org/apache/commons/lang3/time/FastDateParser.java b/home/paul/defects4j/staging/Defects4J-Lang-9-fixed/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
+index 8df302f9..38857c74 100644
+--- a/home/paul/defects4j/staging/Defects4J-Lang-9-buggy/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
++++ b/home/paul/defects4j/staging/Defects4J-Lang-9-fixed/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
+@@ -141,6 +141,9 @@ public class FastDateParser implements DateParser, Serializable {
+             currentFormatField= nextFormatField;
+             currentStrategy= nextStrategy;
+         }
++        if (patternMatcher.regionStart() != patternMatcher.regionEnd()) {
++            throw new IllegalArgumentException("Failed to parse \""+pattern+"\" ; gave up at index "+patternMatcher.regionStart());
++        }
+         if(currentStrategy.addRegex(this, regex)) {
+             collector.add(currentStrategy);
+         }

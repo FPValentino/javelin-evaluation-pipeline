@@ -1,0 +1,14 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-Csv-9-buggy/src/main/java/org/apache/commons/csv/CSVRecord.java b/home/paul/defects4j/staging/Defects4J-Csv-9-fixed/src/main/java/org/apache/commons/csv/CSVRecord.java
+index 3abb4682..e814b707 100644
+--- a/home/paul/defects4j/staging/Defects4J-Csv-9-buggy/src/main/java/org/apache/commons/csv/CSVRecord.java
++++ b/home/paul/defects4j/staging/Defects4J-Csv-9-fixed/src/main/java/org/apache/commons/csv/CSVRecord.java
+@@ -177,6 +177,9 @@ public final class CSVRecord implements Serializable, Iterable<String> {
+      * @return the given map.
+      */
+     <M extends Map<String, String>> M putIn(final M map) {
++        if (mapping == null) {
++            return map;
++        }
+         for (final Entry<String, Integer> entry : mapping.entrySet()) {
+             final int col = entry.getValue().intValue();
+             if (col < values.length) {

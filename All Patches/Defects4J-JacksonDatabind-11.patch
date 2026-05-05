@@ -1,0 +1,21 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-JacksonDatabind-11-buggy/src/main/java/com/fasterxml/jackson/databind/type/TypeFactory.java b/home/paul/defects4j/staging/Defects4J-JacksonDatabind-11-fixed/src/main/java/com/fasterxml/jackson/databind/type/TypeFactory.java
+index a8bd2406..e0eb6396 100644
+--- a/home/paul/defects4j/staging/Defects4J-JacksonDatabind-11-buggy/src/main/java/com/fasterxml/jackson/databind/type/TypeFactory.java
++++ b/home/paul/defects4j/staging/Defects4J-JacksonDatabind-11-fixed/src/main/java/com/fasterxml/jackson/databind/type/TypeFactory.java
+@@ -892,14 +892,14 @@ public final class TypeFactory
+         // 19-Mar-2015: Without context, all we can check are bounds.
+         if (context == null) {
+             // And to prevent infinite loops, now need this:
+-            return _unknownType();
++            context = new TypeBindings(this, (Class<?>) null);
+         } else {
+             // Ok: here's where context might come in handy!
+             /* 19-Mar-2015, tatu: As per [databind#609], may need to allow
+              *   unresolved type variables to handle some cases where bounds
+              *   are enough. Let's hope it does not hide real fail cases.
+              */
+-            JavaType actualType = context.findType(name);
++            JavaType actualType = context.findType(name, false);
+             if (actualType != null) {
+                 return actualType;
+             }

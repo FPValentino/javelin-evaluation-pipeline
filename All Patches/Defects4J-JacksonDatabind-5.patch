@@ -1,0 +1,17 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-JacksonDatabind-5-buggy/src/main/java/com/fasterxml/jackson/databind/introspect/AnnotatedClass.java b/home/paul/defects4j/staging/Defects4J-JacksonDatabind-5-fixed/src/main/java/com/fasterxml/jackson/databind/introspect/AnnotatedClass.java
+index d6e44ab5..fa379b10 100644
+--- a/home/paul/defects4j/staging/Defects4J-JacksonDatabind-5-buggy/src/main/java/com/fasterxml/jackson/databind/introspect/AnnotatedClass.java
++++ b/home/paul/defects4j/staging/Defects4J-JacksonDatabind-5-fixed/src/main/java/com/fasterxml/jackson/databind/introspect/AnnotatedClass.java
+@@ -655,7 +655,12 @@ public final class AnnotatedClass
+                      */
+                 } else {
+                     // Well, or, as per [Issue#515], multi-level merge within mixins...
++                    am = mixIns.find(m);
++                    if (am != null) {
++                        _addMixUnders(m, am);
++                    } else {
+                         mixIns.add(_constructMethod(m));
++                    }
+                 }
+             }
+         }

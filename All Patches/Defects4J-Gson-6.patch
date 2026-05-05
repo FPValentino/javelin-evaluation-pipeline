@@ -1,0 +1,14 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-Gson-6-buggy/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java b/home/paul/defects4j/staging/Defects4J-Gson-6-fixed/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java
+index 30c4f6e9..b52e1573 100644
+--- a/home/paul/defects4j/staging/Defects4J-Gson-6-buggy/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java
++++ b/home/paul/defects4j/staging/Defects4J-Gson-6-fixed/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java
+@@ -64,7 +64,9 @@ public final class JsonAdapterAnnotationTypeAdapterFactory implements TypeAdapte
+       throw new IllegalArgumentException(
+           "@JsonAdapter value must be TypeAdapter or TypeAdapterFactory reference.");
+     }
++    if (typeAdapter != null) {
+       typeAdapter = typeAdapter.nullSafe();
++    }
+     return typeAdapter;
+   }
+ }

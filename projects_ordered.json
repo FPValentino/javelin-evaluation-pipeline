@@ -1,0 +1,716 @@
+{
+  "summary": {
+    "total_bugs": 136,
+    "total_projects": 8,
+    "projects": [
+      "Chart",
+      "Cli",
+      "Csv",
+      "Gson",
+      "JacksonCore",
+      "JacksonDatabind",
+      "Jsoup",
+      "Lang"
+    ]
+  },
+  "by_project": {
+    "Chart": [
+      {
+        "bug_id": "Defects4J-Chart-1",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Chart-2",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Chart-3",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Chart-4",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Chart-5",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Chart-6",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Chart-7",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Chart-9",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Chart-10",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Chart-11",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Chart-12",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Chart-13",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Chart-14",
+        "fault_locations": 4
+      },
+      {
+        "bug_id": "Defects4J-Chart-15",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Chart-16",
+        "fault_locations": 3
+      }
+    ],
+    "Cli": [
+      {
+        "bug_id": "Defects4J-Cli-1",
+        "fault_locations": 31
+      },
+      {
+        "bug_id": "Defects4J-Cli-2",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Cli-3",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Cli-4",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Cli-5",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Cli-7",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Cli-8",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Cli-9",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Cli-10",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Cli-11",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Cli-12",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Cli-13",
+        "fault_locations": 3
+      },
+      {
+        "bug_id": "Defects4J-Cli-14",
+        "fault_locations": 4
+      },
+      {
+        "bug_id": "Defects4J-Cli-15",
+        "fault_locations": 5
+      },
+      {
+        "bug_id": "Defects4J-Cli-16",
+        "fault_locations": 6
+      },
+      {
+        "bug_id": "Defects4J-Cli-17",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Cli-18",
+        "fault_locations": 6
+      },
+      {
+        "bug_id": "Defects4J-Cli-19",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Cli-20",
+        "fault_locations": 4
+      },
+      {
+        "bug_id": "Defects4J-Cli-21",
+        "fault_locations": 6
+      },
+      {
+        "bug_id": "Defects4J-Cli-22",
+        "fault_locations": 11
+      },
+      {
+        "bug_id": "Defects4J-Cli-23",
+        "fault_locations": 5
+      }
+    ],
+    "Csv": [
+      {
+        "bug_id": "Defects4J-Csv-1",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Csv-2",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Csv-3",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Csv-4",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Csv-5",
+        "fault_locations": 198
+      },
+      {
+        "bug_id": "Defects4J-Csv-6",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Csv-7",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Csv-8",
+        "fault_locations": 8
+      },
+      {
+        "bug_id": "Defects4J-Csv-9",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Csv-10",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Csv-11",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Csv-12",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Csv-13",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Csv-14",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Csv-15",
+        "fault_locations": 3
+      }
+    ],
+    "Gson": [
+      {
+        "bug_id": "Defects4J-Gson-1",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Gson-2",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Gson-3",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Gson-4",
+        "fault_locations": 19
+      },
+      {
+        "bug_id": "Defects4J-Gson-5",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Gson-6",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Gson-7",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Gson-8",
+        "fault_locations": 5
+      },
+      {
+        "bug_id": "Defects4J-Gson-9",
+        "fault_locations": 6
+      },
+      {
+        "bug_id": "Defects4J-Gson-10",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Gson-11",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Gson-12",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Gson-13",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Gson-14",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Gson-15",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Gson-16",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Gson-17",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Gson-18",
+        "fault_locations": 1
+      }
+    ],
+    "JacksonCore": [
+      {
+        "bug_id": "Defects4J-JacksonCore-1",
+        "fault_locations": 4
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-2",
+        "fault_locations": 10
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-3",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-4",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-5",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-6",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-7",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-8",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-9",
+        "fault_locations": 6
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-10",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-11",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-12",
+        "fault_locations": 9
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-13",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-14",
+        "fault_locations": 3
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-15",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-16",
+        "fault_locations": 8
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-17",
+        "fault_locations": 4
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-18",
+        "fault_locations": 10
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-19",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-JacksonCore-20",
+        "fault_locations": 1
+      }
+    ],
+    "JacksonDatabind": [
+      {
+        "bug_id": "Defects4J-JacksonDatabind-1",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-3",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-4",
+        "fault_locations": 4
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-5",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-6",
+        "fault_locations": 4
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-7",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-8",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-9",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-10",
+        "fault_locations": 5
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-11",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-12",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-13",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-14",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-15",
+        "fault_locations": 12
+      },
+      {
+        "bug_id": "Defects4J-JacksonDatabind-16",
+        "fault_locations": 1
+      }
+    ],
+    "Jsoup": [
+      {
+        "bug_id": "Defects4J-Jsoup-1",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-2",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-3",
+        "fault_locations": 27
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-4",
+        "fault_locations": 3
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-5",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-6",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-7",
+        "fault_locations": 3
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-8",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-9",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-10",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-11",
+        "fault_locations": 4
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-12",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-13",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-14",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-15",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Jsoup-16",
+        "fault_locations": 4
+      }
+    ],
+    "Lang": [
+      {
+        "bug_id": "Defects4J-Lang-1",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Lang-3",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Lang-4",
+        "fault_locations": 4
+      },
+      {
+        "bug_id": "Defects4J-Lang-5",
+        "fault_locations": 2
+      },
+      {
+        "bug_id": "Defects4J-Lang-6",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Lang-7",
+        "fault_locations": 4
+      },
+      {
+        "bug_id": "Defects4J-Lang-8",
+        "fault_locations": 3
+      },
+      {
+        "bug_id": "Defects4J-Lang-9",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Lang-10",
+        "fault_locations": 9
+      },
+      {
+        "bug_id": "Defects4J-Lang-11",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Lang-12",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Lang-13",
+        "fault_locations": 3
+      },
+      {
+        "bug_id": "Defects4J-Lang-14",
+        "fault_locations": 1
+      },
+      {
+        "bug_id": "Defects4J-Lang-15",
+        "fault_locations": 4
+      },
+      {
+        "bug_id": "Defects4J-Lang-16",
+        "fault_locations": 1
+      }
+    ]
+  },
+  "ordered_bugs": [
+    "Defects4J-Chart-1",
+    "Defects4J-Chart-2",
+    "Defects4J-Chart-3",
+    "Defects4J-Chart-4",
+    "Defects4J-Chart-5",
+    "Defects4J-Chart-6",
+    "Defects4J-Chart-7",
+    "Defects4J-Chart-9",
+    "Defects4J-Chart-10",
+    "Defects4J-Chart-11",
+    "Defects4J-Chart-12",
+    "Defects4J-Chart-13",
+    "Defects4J-Chart-14",
+    "Defects4J-Chart-15",
+    "Defects4J-Chart-16",
+    "Defects4J-Cli-1",
+    "Defects4J-Cli-2",
+    "Defects4J-Cli-3",
+    "Defects4J-Cli-4",
+    "Defects4J-Cli-5",
+    "Defects4J-Cli-7",
+    "Defects4J-Cli-8",
+    "Defects4J-Cli-9",
+    "Defects4J-Cli-10",
+    "Defects4J-Cli-11",
+    "Defects4J-Cli-12",
+    "Defects4J-Cli-13",
+    "Defects4J-Cli-14",
+    "Defects4J-Cli-15",
+    "Defects4J-Cli-16",
+    "Defects4J-Cli-17",
+    "Defects4J-Cli-18",
+    "Defects4J-Cli-19",
+    "Defects4J-Cli-20",
+    "Defects4J-Cli-21",
+    "Defects4J-Cli-22",
+    "Defects4J-Cli-23",
+    "Defects4J-Csv-1",
+    "Defects4J-Csv-2",
+    "Defects4J-Csv-3",
+    "Defects4J-Csv-4",
+    "Defects4J-Csv-5",
+    "Defects4J-Csv-6",
+    "Defects4J-Csv-7",
+    "Defects4J-Csv-8",
+    "Defects4J-Csv-9",
+    "Defects4J-Csv-10",
+    "Defects4J-Csv-11",
+    "Defects4J-Csv-12",
+    "Defects4J-Csv-13",
+    "Defects4J-Csv-14",
+    "Defects4J-Csv-15",
+    "Defects4J-Gson-1",
+    "Defects4J-Gson-2",
+    "Defects4J-Gson-3",
+    "Defects4J-Gson-4",
+    "Defects4J-Gson-5",
+    "Defects4J-Gson-6",
+    "Defects4J-Gson-7",
+    "Defects4J-Gson-8",
+    "Defects4J-Gson-9",
+    "Defects4J-Gson-10",
+    "Defects4J-Gson-11",
+    "Defects4J-Gson-12",
+    "Defects4J-Gson-13",
+    "Defects4J-Gson-14",
+    "Defects4J-Gson-15",
+    "Defects4J-Gson-16",
+    "Defects4J-Gson-17",
+    "Defects4J-Gson-18",
+    "Defects4J-JacksonCore-1",
+    "Defects4J-JacksonCore-2",
+    "Defects4J-JacksonCore-3",
+    "Defects4J-JacksonCore-4",
+    "Defects4J-JacksonCore-5",
+    "Defects4J-JacksonCore-6",
+    "Defects4J-JacksonCore-7",
+    "Defects4J-JacksonCore-8",
+    "Defects4J-JacksonCore-9",
+    "Defects4J-JacksonCore-10",
+    "Defects4J-JacksonCore-11",
+    "Defects4J-JacksonCore-12",
+    "Defects4J-JacksonCore-13",
+    "Defects4J-JacksonCore-14",
+    "Defects4J-JacksonCore-15",
+    "Defects4J-JacksonCore-16",
+    "Defects4J-JacksonCore-17",
+    "Defects4J-JacksonCore-18",
+    "Defects4J-JacksonCore-19",
+    "Defects4J-JacksonCore-20",
+    "Defects4J-JacksonDatabind-1",
+    "Defects4J-JacksonDatabind-3",
+    "Defects4J-JacksonDatabind-4",
+    "Defects4J-JacksonDatabind-5",
+    "Defects4J-JacksonDatabind-6",
+    "Defects4J-JacksonDatabind-7",
+    "Defects4J-JacksonDatabind-8",
+    "Defects4J-JacksonDatabind-9",
+    "Defects4J-JacksonDatabind-10",
+    "Defects4J-JacksonDatabind-11",
+    "Defects4J-JacksonDatabind-12",
+    "Defects4J-JacksonDatabind-13",
+    "Defects4J-JacksonDatabind-14",
+    "Defects4J-JacksonDatabind-15",
+    "Defects4J-JacksonDatabind-16",
+    "Defects4J-Jsoup-1",
+    "Defects4J-Jsoup-2",
+    "Defects4J-Jsoup-3",
+    "Defects4J-Jsoup-4",
+    "Defects4J-Jsoup-5",
+    "Defects4J-Jsoup-6",
+    "Defects4J-Jsoup-7",
+    "Defects4J-Jsoup-8",
+    "Defects4J-Jsoup-9",
+    "Defects4J-Jsoup-10",
+    "Defects4J-Jsoup-11",
+    "Defects4J-Jsoup-12",
+    "Defects4J-Jsoup-13",
+    "Defects4J-Jsoup-14",
+    "Defects4J-Jsoup-15",
+    "Defects4J-Jsoup-16",
+    "Defects4J-Lang-1",
+    "Defects4J-Lang-3",
+    "Defects4J-Lang-4",
+    "Defects4J-Lang-5",
+    "Defects4J-Lang-6",
+    "Defects4J-Lang-7",
+    "Defects4J-Lang-8",
+    "Defects4J-Lang-9",
+    "Defects4J-Lang-10",
+    "Defects4J-Lang-11",
+    "Defects4J-Lang-12",
+    "Defects4J-Lang-13",
+    "Defects4J-Lang-14",
+    "Defects4J-Lang-15",
+    "Defects4J-Lang-16"
+  ]
+}

@@ -1,0 +1,19 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-JacksonCore-13-buggy/src/main/java/com/fasterxml/jackson/core/json/JsonGeneratorImpl.java b/home/paul/defects4j/staging/Defects4J-JacksonCore-13-fixed/src/main/java/com/fasterxml/jackson/core/json/JsonGeneratorImpl.java
+index fb8f21cd..1270eae4 100644
+--- a/home/paul/defects4j/staging/Defects4J-JacksonCore-13-buggy/src/main/java/com/fasterxml/jackson/core/json/JsonGeneratorImpl.java
++++ b/home/paul/defects4j/staging/Defects4J-JacksonCore-13-fixed/src/main/java/com/fasterxml/jackson/core/json/JsonGeneratorImpl.java
+@@ -124,6 +124,14 @@ public abstract class JsonGeneratorImpl extends GeneratorBase
+         return this;
+     }
+ 
++    @Override
++    public JsonGenerator disable(Feature f) {
++        super.disable(f);
++        if (f == Feature.QUOTE_FIELD_NAMES) {
++            _cfgUnqNames = true;
++        }
++        return this;
++    }
+ 
+     @Override
+     protected void _checkStdFeatureChanges(int newFeatureFlags, int changedFeatures) {

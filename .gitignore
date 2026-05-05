@@ -28,3 +28,12 @@ Extraction.py
 
 # Excel report outputs
 *.xlsx
+
+# Archives
+*.rar
+
+# Working/backup directories
+Old/
+backup/
+Convert_To_CSV/
+Patch comparison/

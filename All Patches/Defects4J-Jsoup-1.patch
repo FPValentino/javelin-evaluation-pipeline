@@ -1,0 +1,15 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-Jsoup-1-buggy/src/main/java/org/jsoup/nodes/Document.java b/home/paul/defects4j/staging/Defects4J-Jsoup-1-fixed/src/main/java/org/jsoup/nodes/Document.java
+index bc0f650d..6ed4c127 100644
+--- a/home/paul/defects4j/staging/Defects4J-Jsoup-1-buggy/src/main/java/org/jsoup/nodes/Document.java
++++ b/home/paul/defects4j/staging/Defects4J-Jsoup-1-fixed/src/main/java/org/jsoup/nodes/Document.java
+@@ -122,8 +122,8 @@ public class Document extends Element {
+ 
+         for (Node node: toMove) {
+             element.removeChild(node);
+-            body().appendChild(new TextNode(" ", ""));
+-            body().appendChild(node);
++            body().prependChild(node);
++            body().prependChild(new TextNode(" ", ""));
+         }
+     }
+ 

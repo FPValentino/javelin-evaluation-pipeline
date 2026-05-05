@@ -1,0 +1,13 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-Csv-1-buggy/src/main/java/org/apache/commons/csv/ExtendedBufferedReader.java b/home/paul/defects4j/staging/Defects4J-Csv-1-fixed/src/main/java/org/apache/commons/csv/ExtendedBufferedReader.java
+index 563ece1b..219fe68e 100644
+--- a/home/paul/defects4j/staging/Defects4J-Csv-1-buggy/src/main/java/org/apache/commons/csv/ExtendedBufferedReader.java
++++ b/home/paul/defects4j/staging/Defects4J-Csv-1-fixed/src/main/java/org/apache/commons/csv/ExtendedBufferedReader.java
+@@ -55,7 +55,7 @@ class ExtendedBufferedReader extends BufferedReader {
+     @Override
+     public int read() throws IOException {
+         int current = super.read();
+-        if (current == '\n') {
++        if (current == '\r' || (current == '\n' && lastChar != '\r')) {
+             lineCounter++;
+         }
+         lastChar = current;

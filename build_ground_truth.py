@@ -83,7 +83,12 @@ def extract_faulty_lines(patch_folder):
 
                 # Skip test files
                 lower_path = clean_path.lower()
-                if "src/test" in lower_path or "/test/" in lower_path or "/tests/" in lower_path or not clean_path.endswith(".java"):
+                filename_no_ext = lower_path.split("/")[-1].replace(".java", "")
+                is_test_path = ("src/test" in lower_path or "/test/" in lower_path
+                                or "/tests/" in lower_path or "focused-test" in lower_path)
+                is_test_file = (filename_no_ext.startswith("test") or filename_no_ext.endswith("test")
+                                or filename_no_ext.endswith("tests"))
+                if is_test_path or is_test_file or not clean_path.endswith(".java"):
                     continue
 
                 if clean_path.startswith("a/") or clean_path.startswith("b/"):

@@ -1,0 +1,14 @@
+diff --git a/home/paul/defects4j/staging/Defects4J-Csv-5-buggy/src/main/java/org/apache/commons/csv/CSVPrinter.java b/home/paul/defects4j/staging/Defects4J-Csv-5-fixed/src/main/java/org/apache/commons/csv/CSVPrinter.java
+index 32553606..a8aa33ff 100644
+--- a/home/paul/defects4j/staging/Defects4J-Csv-5-buggy/src/main/java/org/apache/commons/csv/CSVPrinter.java
++++ b/home/paul/defects4j/staging/Defects4J-Csv-5-fixed/src/main/java/org/apache/commons/csv/CSVPrinter.java
+@@ -322,7 +322,9 @@ public final class CSVPrinter implements Flushable, Closeable {
+      */
+     public void println() throws IOException {
+         final String recordSeparator = format.getRecordSeparator();
++        if (recordSeparator != null) {
+             out.append(recordSeparator);
++        }
+         newRecord = true;
+     }
+ 
